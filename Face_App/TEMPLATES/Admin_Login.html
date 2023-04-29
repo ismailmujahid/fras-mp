@@ -1,0 +1,66 @@
+{% extends 'base.html'%}
+    {% block content%}
+    {% if messages %}
+        {% for message in messages %}
+         {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+
+        {% endfor %}
+
+    {% endif %}
+    {%load static%}
+<style>
+    .box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 100px;
+}
+
+.box > div { /*The > denotes only the first or immediate child will be affected*/
+  width: 500px;
+  height: 500px;
+  /*border: dotted;*/
+
+}
+</style>
+<!-- <div style="background-image:  url('/media/bg.jpeg'); background-repeat:no-repeat;background-size:cover;  height:730px; width:100%;"> -->
+  <div style="background-image:  url('/media/bg.jpeg'); background-repeat:no-repeat;background-size:cover;  height:730px; width:100%;">
+<div class="box">
+  <div class="shadow-lg p-3 mb-5 bg-body rounded">
+    <h1>Admin Login</h1>
+      <form method="POST" action="/Admin_Login/" enctype="multipart/form-data" style="padding: 20px;">
+        {% csrf_token %}
+          <div class="row">
+              <div class="col-md-12">
+                  <label class="form-label">Username</label>
+              </div>
+
+              <div class="col-md-12">
+                  <input class="form-control" type="Text" name="aname">
+              </div>
+          </div>
+          <br>
+          <br>
+          <div class="row">
+              <div class="col-md-12">
+                  <label class="form-label">Password</label>
+              </div>
+
+              <div class="col-md-12">
+                  <input class="form-control" type="Password" name="apass">
+              </div>
+          </div>
+          <br>
+          <br>
+          <div class="row">
+              <div class="col-md-12" style="display: flex;justify-content: center;">
+                  <input type="submit" name="Login" class="btn btn-primary">
+              </div>
+          </div>
+      </form>
+  </div>
+</div>
+</div>
+<!-- </div> -->
+    {% endblock %}
+

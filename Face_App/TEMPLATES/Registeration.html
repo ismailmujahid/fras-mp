@@ -1,0 +1,204 @@
+{% extends 'base.html'%}
+    {% block content%}
+    {% if messages %}
+        {% for message in messages %}
+         {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+
+        {% endfor %}
+
+    {% endif %}
+    {%load static%}
+
+    <!--  <head>
+      <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+      <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+      <py-env>
+        - numpy
+        - matplotlib
+        - cv2
+      </py-env>
+    </head> -->
+
+
+    <style>
+    .box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 100px;
+}
+
+.box > div { /*The > denotes only the first or immediate child will be affected*/
+  width: 800px;
+  height: auto;
+  /*border: solid;*/
+
+}
+
+#container {
+  max-width: 80vw;
+  max-height: 80vh;
+  position: relative;
+}
+
+#player {
+  width: 100%;
+  border: 2px solid #111;
+  box-shadow: 0 0 50px #111;
+}
+
+#capture-button {
+  display: block;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  bottom: 20px;
+  left: 50%;
+  margin-left: -25px;
+  border-radius: 50%;
+  background-color: #ff0000;
+  border: 2px solid #fff;
+  cursor: pointer;
+  transition: all .15s ease-in-out;
+  opacity: 0.5;
+  outline: none;
+  
+  &:hover {
+    transform: scale(1.1);
+  }
+  
+  &:active {
+    background-color: #00ff00;
+  }
+}
+
+h6{
+    color: red;
+}
+
+#output {
+  display: none;
+}
+</style>
+
+
+<div style="background-image:  url('/media/bg.jpeg'); background-repeat:no-repeat;background-size:cover;  height:880px; width:100%;">
+<div class="box">
+    <div class="shadow-lg p-3 mb-5 bg-body rounded">
+        <h1 class="box">Employee Registeration</h1>
+        <hr>
+
+        <form  method="POST" action="/Registeration/"  enctype="multipart/form-data">
+           {% csrf_token %}
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-floating mb-3">
+                    <input type="text" class="form-control"  name="firstname" id="firstname" placeholder="Name" required>
+                    <label for="floatingInput">Name</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingInput" name="age" id="age" placeholder="Age" required>
+                    <label for="floatingInput">Age</label>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-floating mb-3">
+                    <input type="tel" class="form-control" name="phone" id="phone" pattern="[1-9]{1}[0-9]{9}" placeholder="Phone Number" required>
+                    <label for="floatingInput">Phone Number</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+               <div class="col-md-12">
+                   <div class="form-floating mb-3">
+                    <input type="text" class="form-control"  name="Address" id="Address" placeholder="Address" required>
+                    <label for="floatingInput">Address</label>
+                    </div>
+               </div> 
+            </div>
+
+             <div class="row">
+               <div class="col-md-12">
+                   <div class="form-floating mb-3">
+                    <input type="text" class="form-control"  name="email" id="Address" placeholder="Address" required>
+                    <label for="floatingInput">Email Address</label>
+                    </div>
+               </div> 
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-floating mb-3">
+                    <input type="text" class="form-control"  name="username" id="username" placeholder="Username" required>
+                    <label for="floatingInput">Username</label>
+                    <h6>Please Enter the same <u><b>Username*</b></u>entered before</h6>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-floating mb-3">
+                    <input type="Password" class="form-control"  name="pass" id="pass" placeholder="Password" required>
+                    <label for="floatingInput">Password</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingInput" name="Department" id="Department" placeholder="Department" required>
+                    <label for="floatingInput">Department</label>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingInput" name="course" id="course" placeholder="Course" required>
+                    <label for="floatingInput">Course</label>
+                    </div>
+                </div>
+
+                 <div class="col-md-4">
+                    <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingInput" name="Class" id="Class" placeholder="Class" required>
+                    <label for="floatingInput">Class</label>
+                    </div>
+                </div>
+            </div>
+
+           <!-- <div class="row">
+               
+
+                <div class="col-md-12" style="display: flex;justify-content: center;">
+                    <label class="form-label">Upload File</label>
+                    <input type="file" class="btn btn-primary" id="img" name="img" required>
+                </div>
+            </div>
+                  -->
+        <br>
+        
+        <div class="row">
+            <div style="text-align:center" class="col-12">
+                <!-- <button style="width:30%;" type="submit" class="btn btn-primary">Submit</button> -->
+                <input type="submit" class="btn btn-primary"  value="Submit" >
+              </div>
+        </div>
+    
+
+
+        </form>
+    </div>
+</div>
+</div>
+
+
+
+
+    {% endblock %}

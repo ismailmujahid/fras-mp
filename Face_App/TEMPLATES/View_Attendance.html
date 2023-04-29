@@ -1,0 +1,58 @@
+{% extends 'base.html'%}
+    {% block content%}
+    {% if messages %}
+        {% for message in messages %}
+         {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+
+        {% endfor %}
+
+    {% endif %}
+    {%load static%}
+
+    <style>
+ 
+
+.pad{
+    padding-top: 100px;
+}
+
+.container{
+    width: 50%;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div style="background-image:  url('/media/bg.jpeg'); background-repeat:no-repeat;background-size:cover;  height:730px; width:100%;">
+   <div class="container pad">
+    <div class="row">
+        <form class="example" action="/View_Attendance/" method="POST">
+            {% csrf_token %}
+            <input type="text" placeholder="Search.." name="searched">
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+    <br>
+       <form>
+           <table border="5px solid #000;" class="table table-dark table-striped table-hover">
+               <tbody>
+                    <tr>
+                        <th>Name</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                    </tr>
+               </tbody>
+
+               <tbody>
+                {%for i in details%}
+                   <tr>
+                       <td>{{i.name}}</td>
+                       <td>{{i.date}}</td>
+                       <td>{{i.time}}</td>
+                   </tr>
+                {%endfor%}
+               </tbody>
+           </table>
+       </form>
+   </div>
+</div>
+    {% endblock %}

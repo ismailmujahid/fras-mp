@@ -1,0 +1,13 @@
+{% extends 'base.html'%}
+    {% block content%}
+    {% if messages %}
+        {% for message in messages %}
+         {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+
+        {% endfor %}
+
+    {% endif %}
+    {%load static%}
+    <div style="background-image:  url('/media/bg.jpeg'); background-repeat:no-repeat;background-size:cover;  height:730px; width:100%;">
+    </div>
+    {% endblock %}

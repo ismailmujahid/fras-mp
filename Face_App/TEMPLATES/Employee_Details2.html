@@ -1,0 +1,145 @@
+{% extends 'base.html'%}
+    {% block content%}
+    {% if messages %}
+        {% for message in messages %}
+         {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+
+        {% endfor %}
+
+    {% endif %}
+    {%load static%}
+
+    <style>
+ img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+ /* padding-top: 100px;*/
+}
+
+.blank{
+    padding-top: 80px;
+}
+
+  .box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ /* padding-top: 100px;*/
+}
+
+.box > div { /*The > denotes only the first or immediate child will be affected*/
+  width: auto;
+  height: auto;
+  /*border: dotted;
+*/
+}
+
+.Data{
+    border: 2px solid black;
+}
+</style>
+<div style="background-image:  url('/media/bg.jpeg'); background-repeat:no-repeat;background-size:cover;  height:1000px; width:100%;">
+    <div class="row blank">
+        
+    </div>
+
+    {%for i in details%}
+    <div class="box">
+        <div class="shadow-lg p-3 mb-5 bg-body rounded">
+            <div class="Data">
+                <div class="row">
+                    <div class="col-md-12">
+                        <img name="img" class="img shadow-lg" src="{{i.images.url}}" style="border-radius:125px;width: 250px;height: 250px;border: 5px solid black; ">
+                    </div>
+                </div>
+                <hr>
+                <div class="row" style="margin-left: 30px;">
+                    <div class="col-md-4">
+                        <h4>Name:</h4>
+                    </div>
+                    <div class="col-md-8">
+                        <h4>{{i.F_name}}</h4>
+                    </div>
+                </div>
+                <br>
+                <div class="row"style="margin-left: 30px;">
+                    <div class="col-md-4">
+                        <h4>Age:</h4>
+                    </div>
+
+                    <div class="col-md-8">
+                        <h4>{{i.age }}</h4>
+                    </div>
+                </div>
+                <br>
+                <div class="row"style="margin-left: 30px;">
+                    <div class="col-md-4">
+                        <h4>Phone number:</h4>
+                    </div>
+
+                    <div class="col-md-8">
+                        <h4>{{i.phone }}</h4>
+                    </div>
+                </div>
+                <br>
+                <div class="row"style="margin-left: 30px;">
+                    <div class="col-md-4">
+                        <h4>Address:</h4>
+                    </div>
+
+                    <div class="col-md-8">
+                        <h4>{{i.address}}</h4>
+                    </div>
+                </div>
+                <br>
+                <div class="row"style="margin-left: 30px;">
+                    <div class="col-md-4">
+                        <h4>Email Address:</h4>
+                    </div>
+
+                    <div class="col-md-8">
+                        <h4>{{i.email}}</h4>
+                    </div>
+                </div>
+                <br>
+                <div class="row"style="margin-left: 30px;">
+                    <div class="col-md-4">
+                        <h4>Department:</h4>
+                    </div>
+
+                    <div class="col-md-8">
+                        <h4> &nbsp;&nbsp;{{i.department}}</h4>
+                    </div>
+                </div>
+                <br>
+                <div class="row"style="margin-left: 30px;">
+                    <div class="col-md-4">
+                        <h4>Course:</h4>
+                    </div>
+
+                    <div class="col-md-8">
+                        <h4>{{i.course}}</h4>
+                    </div>
+                </div>
+                <br>
+                <div class="row"style="margin-left: 30px;">
+                    <div class="col-md-4">
+                        <h4>Class:</h4>
+                    </div>
+
+                    <div class="col-md-8">
+                        <h4>{{i.Class}}</h4>
+                    </div>
+                </div>
+                <br>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    {%endfor%}
+   
+    {% endblock %}
+
+     

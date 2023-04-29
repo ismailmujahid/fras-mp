@@ -1,0 +1,26 @@
+{% extends 'base.html'%}
+    {% block content%}
+    {% if messages %}
+        {% for message in messages %}
+         {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+
+        {% endfor %}
+
+    {% endif %}
+    {%load static%}
+
+    <div class="row">
+        <div class="col-md-12" style="display: flex;justify-content: center;">
+            <form method="POST" action="/Demo2/" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="text" name="name">
+                <a class="button" href="{% url 'cam'%}" ></a>
+                <label class="form-label">Upload File</label>
+                    <input type="file" class="btn btn-primary" id="img" name="file" 
+                             required>
+                <input type="submit" name="Submit">
+            </form>
+        </div>
+    </div>
+ 
+    {% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html'%}
+    {% block content%}
+    {% if messages %}
+        {% for message in messages %}
+         {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+
+        {% endfor %}
+
+    {% endif %}
+    {%load static%}
+    <div style="background-image:  url('/media/bg.jpeg'); background-repeat:no-repeat;background-size:cover;  height:730px; width:100%;">
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="container">
+        <form>
+            <table border="5px solid #000;" class="table table-dark table-striped table-hover">
+                <tbody>
+                    <tr style="text-align:center">
+                        <td>Name</td>
+                        <td>Department</td>
+                        <td>Class</td>
+                        <td>Action</td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    {%for i in details%}
+                        <tr style="text-align:center">
+                            <td>{{i.F_name}}</td>
+                            <td>{{i.department}}</td>
+                            <td>{{i.Class}}</td>
+                            <td><a class="button btn btn-primary" href="/Employee_Details2/{{i.id}}">Profile</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+    {% endblock %}

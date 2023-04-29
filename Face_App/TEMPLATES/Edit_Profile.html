@@ -1,0 +1,117 @@
+{% extends 'base.html'%}
+    {% block content%}
+    {% if messages %}
+        {% for message in messages %}
+         {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+
+        {% endfor %}
+
+    {% endif %}
+    {%load static%}
+    <style>
+        .pad{
+    padding-top: 80px;
+
+
+}
+.container{
+    width: 60%;
+    border: 2px solid white;
+}
+h2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+    </style>
+    <div style="background-image:  url('/media/bg.jpeg'); background-repeat:no-repeat;background-size:cover;  height:730px; width:100%;">
+    <div class="container pad">
+        <h2 style="color:white;">Edit Your profile</h2>
+        <hr style="color:white;">
+           <form method="POST" action="/update/" enctype="multipart/form-data">
+            {% csrf_token %}
+            {%for i in details%}
+            <div class="row" hidden>
+                <div class="col-md-12">
+                    <input type="text" name="UserId" value="{{i.id}}">
+                </div>
+            </div>
+                <div class="row">
+                <div class="col-md-12">
+                    <div class="form-floating mb-3">
+                    <input type="text" class="form-control"  name="firstname" id="firstname" placeholder="Name" value="{{i.F_name}}" required>
+                    <label for="floatingInput">Name</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingInput" name="age" id="age" placeholder="Age" value="{{i.age}}" required>
+                    <label for="floatingInput">Age</label>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-floating mb-3">
+                    <input type="tel" class="form-control" name="phone" id="phone" pattern="[1-9]{1}[0-9]{9}" placeholder="Phone Number" value="{{i.phone}}" required>
+                    <label for="floatingInput">Phone Number</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+               <div class="col-md-12">
+                   <div class="form-floating mb-3">
+                    <input type="text" class="form-control"  name="Address" id="Address" placeholder="Address" value="{{i.address}}" required>
+                    <label for="floatingInput">Address</label>
+                    </div>
+               </div> 
+            </div>
+
+             <div class="row">
+               <div class="col-md-12">
+                   <div class="form-floating mb-3">
+                    <input type="text" class="form-control"  name="email" id="Address" placeholder="Address" value="{{i.email}}" required>
+                    <label for="floatingInput">Email Address</label>
+                    </div>
+               </div> 
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingInput" name="Department" id="Department" placeholder="Department" value="{{i.department}}" required>
+                    <label for="floatingInput">Department</label>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingInput" name="course" id="course" placeholder="Course" required value="{{i.course}}">
+                    <label for="floatingInput">Course</label>
+                    </div>
+                </div>
+
+                 <div class="col-md-4">
+                    <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingInput" name="Class" id="Class" placeholder="Class" required value="{{i.Class}}">
+                    <label for="floatingInput">Class</label>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-12" style="display: flex;justify-content: center;" >
+                    <input type="submit" name="Submit" class="btn btn-primary" style="width:30%;">
+                </div>
+            </div>
+            <br>
+            {%endfor%}
+           </form>
+
+
+    </div>
+</div>
+    {% endblock %}
